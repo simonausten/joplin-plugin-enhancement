@@ -19,7 +19,20 @@ export default function leafletRender(cm) {
         container.classList.add('leaflet-chart')
 
         try {
-            let map = L.map(map_div).setView([51.505, -0.09], 13);
+            // Initialize the map
+            var map = L.map(map_div, {
+                scrollWheelZoom: false
+            });
+
+            // Set the position and zoom level of the map
+            map.setView([52.683559, -1.822360], 7);
+
+            // Initialize the base layer
+            var osm_mapnik = L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                maxZoom: 19,
+                attribution: '&copy; OSM Mapnik <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+            }).addTo(map);
+
             container.appendChild(map_div)
             // container.innerHTML = JSON.stringify(L)// leaflet.render(`graphDivL${fromLine}-L${toLine}${Date.now()}`, content)
         } catch (err: any) {

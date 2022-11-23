@@ -1,19 +1,20 @@
-import {initCodeMode} from "./mode";
-import {ContextMsgType, EnhancementConfig} from "../../common";
-import {initOverlayOption} from "./overlay";
-import {linkFolderOptionFunc} from "./linkFolder";
-import QuickCommands, {ExtendedEditor} from "./quickCommands/quickCommands";
-import {Editor} from "codemirror";
-import {taskAndHeaderRender} from "./taskRender";
-import {enhancement_mermaid_render} from "./common";
+import { initCodeMode } from "./mode";
+import { ContextMsgType, EnhancementConfig } from "../../common";
+import { initOverlayOption } from "./overlay";
+import { linkFolderOptionFunc } from "./linkFolder";
+import QuickCommands, { ExtendedEditor } from "./quickCommands/quickCommands";
+import { Editor } from "codemirror";
+import { taskAndHeaderRender } from "./taskRender";
+import { enhancement_mermaid_render } from "./common";
 import mermaidRender from "./mermaidRender";
+import leafletRender from "./leafletRender";
 import inlineMarkerRender from "./inlineMarker";
 import formattingBarHook from "./formattingBar/formattingBart";
-import {initCommands} from "./commands";
+import { initCommands } from "./commands";
 
 
 module.exports = {
-    default: function(context) {
+    default: function (context) {
 
         /**
          * Send message to get plugin settings
@@ -32,7 +33,7 @@ module.exports = {
                 // Default overlays. Others can depend on this. Cannot be turned off
                 initOverlayOption(context, CodeMirror);
 
-                CodeMirror.defineOption('enable-enhancement-codemirror', false, async function(cm, val, old) {
+                CodeMirror.defineOption('enable-enhancement-codemirror', false, async function (cm, val, old) {
                     // Get plugin settings. From joplin-rich-markdown
                     // There is a race condition in the Joplin initialization code
                     // Sometimes the settings aren't ready yet and will return `undefined`
@@ -64,6 +65,10 @@ module.exports = {
                                 mermaidRender(cm);
                             }
 
+                            if (settings.leafletCmRender) {
+                                leafletRender(cm);
+                            }
+
                             if (settings.inlineMarker) {
                                 inlineMarkerRender(cm);
                             }
@@ -87,7 +92,7 @@ module.exports = {
                 enhancement_overlay_option: true,               // Enable ./overlay
                 styleActiveLine: true,
             },
-            assets: function() {
+            assets: function () {
                 return [
                     {
                         name: './overlay/overlay.css'

@@ -1,0 +1,12 @@
+.CodeMirror-sizer .leaflet-chart div,
+.CodeMirror-sizer .leaflet-chart span {
+    font-family: "trebuchet ms", verdana, arial, sans-serif !important;
+}
+
+.CodeMirror-sizer .leaflet-chart svg {
+    max-height: 300px;
+}
+
+.enhancement-leaflet-block-marker-line {
+    display: none;
+}

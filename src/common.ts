@@ -20,6 +20,7 @@ export const ENABLE_TABLE_RENDER = 'enhancementEnableTableRender';
 export const ENABLE_MATH_RENDER = 'enhancementEnableMathRender';
 export const ENABLE_MERMAID_RENDER = 'enhancementEnableMermaidRender';
 export const ENABLE_PLANTUML_RENDER = 'enhancementEnablePlantUmlRenderer';
+export const ENABLE_LEAFLET_RENDER = 'enhancementEnableLeafletRenderer';
 export const ENABLE_CODEBLOCK_HL = 'enhancementEnableCodeBlockHighlight';
 export const ENABLE_FORMATTING_BAR = 'enhancementEnableFormattingBar';
 export const ENABLE_BULLET_LIST_RENDER = 'enhancementEnableBulletListRender';
@@ -47,6 +48,7 @@ export class EnhancementConfig {
     public tableCmRender: boolean;
     public mathCmRender: boolean;
     public mermaidCmRender: boolean;
+    public leafletCmRender: boolean;
     public codeBlockHL: boolean;
     public formattingBar: boolean;
     public dateFormat: string;

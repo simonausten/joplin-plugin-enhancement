@@ -18,6 +18,7 @@ import {
     ENABLE_TASK_RENDER,
     ENABLE_MATH_RENDER,
     ENABLE_MERMAID_RENDER,
+    ENABLE_LEAFLET_RENDER,
     ENABLE_CODEBLOCK_HL,
     ENABLE_BLOCK_IMAGE_FOLDER,
     ENABLE_HEADER_HASH_RENDER,
@@ -231,6 +232,15 @@ export namespace settings {
             type: SettingItemType.Bool,
             label: 'Render mermaid code block to svg in markdown editor',
             description: "It can hurt your joplin's performance",
+        }
+
+        PLUGIN_SETTINGS[ENABLE_LEAFLET_RENDER] = {
+            value: true,
+            public: true,
+            section: SECTION,
+            type: SettingItemType.Bool,
+            label: 'Render Leaflet maps in markdown editor',
+            description: "Not working... yet!",
         }
 
         PLUGIN_SETTINGS[ENABLE_CODEBLOCK_HL] = {

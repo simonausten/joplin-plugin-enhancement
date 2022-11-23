@@ -1,6 +1,6 @@
-import {CMBlockMarkerHelper} from "../../../utils/CMBlockMarkerHelper";
+import { CMBlockMarkerHelper } from "../../../utils/CMBlockMarkerHelper";
 import mermaid from 'mermaid'
-import {LineHandle} from "codemirror";
+import { LineHandle } from "codemirror";
 
 const ENHANCEMENT_MERMAID_SPAN_MARKER_CLASS = 'enhancement-mermaid-block-marker';
 const ENHANCEMENT_MERMAID_SPAN_MARKER_LINE_CLASS = 'enhancement-mermaid-block-marker-line';
@@ -10,7 +10,7 @@ const ENHANCEMENT_MERMAID_SPAN_MARKER_LINE_CLASS = 'enhancement-mermaid-block-ma
 mermaid.initialize({ startOnLoad: false })
 
 export default function mermaidRender(cm) {
-    // Block Katex Math Render
+    console.log("Attempting mermaid render")
     new CMBlockMarkerHelper(cm, null, /^\s*```mermaid\s*$/, /^\s*```\s*$/, (beginMatch, endMatch, content, fromLine, toLine) => {
         // code from zettlr
         let svg = document.createElement('span')
@@ -28,7 +28,7 @@ export default function mermaidRender(cm) {
         span.textContent = '===> Folded Mermaid Code Block <===';
         span.style.cssText = 'color: lightgray; font-size: smaller; font-style: italic;';
         return span;
-    },ENHANCEMENT_MERMAID_SPAN_MARKER_CLASS, true);
+    }, ENHANCEMENT_MERMAID_SPAN_MARKER_CLASS, true);
 
     cm.on('renderLine', (editor, line: LineHandle, element: Element) => {
         if (element.getElementsByClassName(ENHANCEMENT_MERMAID_SPAN_MARKER_CLASS).length > 0) {

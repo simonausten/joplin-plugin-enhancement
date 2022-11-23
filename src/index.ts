@@ -1,6 +1,6 @@
 import joplin from 'api';
-import {ContentScriptType, ModelType, ToolbarButtonLocation} from "api/types";
-import {settings} from "./settings";
+import { ContentScriptType, ModelType, ToolbarButtonLocation } from "api/types";
+import { settings } from "./settings";
 import {
 	ContextMsg,
 	ContextMsgType,
@@ -18,7 +18,9 @@ import {
 	ENABLE_LINK_FOLDER,
 	ENABLE_LOCAL_PDF_PREVIEW,
 	ENABLE_MATH_RENDER,
-	ENABLE_MERMAID_RENDER, ENABLE_PLANTUML_RENDER,
+	ENABLE_MERMAID_RENDER,
+	ENABLE_PLANTUML_RENDER,
+	ENABLE_LEAFLET_RENDER,
 	ENABLE_PSEUDOCODE,
 	ENABLE_QUICK_COMMANDS,
 	ENABLE_SEARCH_REPLACE,
@@ -29,7 +31,7 @@ import {
 } from "./common";
 
 joplin.plugins.register({
-	onStart: async function() {
+	onStart: async function () {
 
 		await settings.register();
 		const enhancementConfig = await getConfig();
@@ -185,8 +187,8 @@ joplin.plugins.register({
 				label: 'Toggle Side Bar and Note List',
 				iconName: 'fa fa-bullseye',
 				execute: async () => {
-					await joplin.commands.execute('toggleSideBar', { });
-					await joplin.commands.execute('toggleNoteList', { });
+					await joplin.commands.execute('toggleSideBar', {});
+					await joplin.commands.execute('toggleNoteList', {});
 				},
 			})
 
@@ -302,6 +304,7 @@ async function getConfig(): Promise<EnhancementConfig> {
 	config.tableCmRender = await joplin.settings.value(ENABLE_TABLE_RENDER);
 	config.mathCmRender = await joplin.settings.value(ENABLE_MATH_RENDER);
 	config.mermaidCmRender = await joplin.settings.value(ENABLE_MERMAID_RENDER);
+	config.leafletCmRender = await joplin.settings.value(ENABLE_LEAFLET_RENDER);
 	config.codeBlockHL = await joplin.settings.value(ENABLE_CODEBLOCK_HL);
 	config.formattingBar = await joplin.settings.value(ENABLE_FORMATTING_BAR);
 	config.dateFormat = await joplin.settings.globalValue('dateFormat');
